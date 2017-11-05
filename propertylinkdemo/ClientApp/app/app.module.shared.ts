@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { FileService } from './services/file.service'
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -17,6 +19,9 @@ import { CounterComponent } from './components/counter/counter.component';
         CounterComponent,
         FetchDataComponent,
         HomeComponent
+    ],
+    providers: [
+        FileService
     ],
     imports: [
         CommonModule,
