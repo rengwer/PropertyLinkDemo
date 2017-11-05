@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PropertyLinkDemo.Models;
 using System.IO;
+using PropertyLinkDemo.Parsers;
 
 namespace PropertyLinkDemo.Controllers
 {
@@ -19,24 +20,13 @@ namespace PropertyLinkDemo.Controllers
             using (var sr = new StreamReader(HttpContext.Request.Body))
                 text = sr.ReadToEnd();
 
-            return new FileUploadResult();
+            var parser = new TextParser(
+                text, 
+                new TextParserOptions {
+                    IgnoreBlankLines = true,
+                    IgnoreHeaderLine = true });
 
-
-            //        List<IFormFile> files = new List<IFormFile>();
-            //    var fileText = "";
-            //    foreach (var formFile in files)
-            //    {
-            //        if (formFile.Length > 0)
-            //        {
-            //            using (var streamReader = new StreamReader(formFile.OpenReadStream()))
-            //            {
-            //                fileText = streamReader.ReadToEnd();
-            //            }
-            //        }
-            //    }
-
-            //    return new FileUploadResult();
-            //}
+            return parser.Parse();
         }
     }
 
