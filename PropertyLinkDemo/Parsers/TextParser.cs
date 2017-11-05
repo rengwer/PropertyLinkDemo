@@ -34,7 +34,7 @@ namespace PropertyLinkDemo.Parsers
 
                 var trimmedLine = line.Trim(' ', '\t');
 
-                if (trimmedLine.StartsWith('['))
+                if (IsHeader(trimmedLine))
                 {
                     if (currentSegment != null) fileSegments.Add(currentSegment);
 
@@ -49,6 +49,11 @@ namespace PropertyLinkDemo.Parsers
             if (currentSegment != null) fileSegments.Add(currentSegment);
 
             return new FileUploadResult { FileSegments = fileSegments };
+        }
+
+        private bool IsHeader(string text)
+        {
+            return text.StartsWith('[');
         }
 
     }

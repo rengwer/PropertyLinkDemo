@@ -1,27 +1,35 @@
-﻿export class FileUploadResult
-{
-    public FileSegments : Array<FileSegment> 
+﻿export interface IFileUploadResult {
+    fileSegments: Array<IFileSegment>
+    programCounts: Array<IProgramCount>
 }
 
-export class FileSegment
-{
-    public HeaderSegment: HeaderSegment;
-    public LineSegments: Array<LineSegment>;
+export interface IFileSegment {
+    headerSegment: IHeaderSegment;
+    lineSegments: Array<ILineSegment>;
 }
 
-export class HeaderSegment implements LineInformation
-{
-    public Text: string;
+export interface IHeaderSegment {
+    text: string;
+    dataType: string;
+    program: string;
+    task: string;
+    tool: string;
 }
 
 
-export class LineSegment implements LineInformation
-{
-    public Text: string;
+export interface ILineSegment {
+    text: string;
+    dataType: string;
+    program: string;
+    task: string;
+    tool: string;
+    propertyDirection: string;
+    sourcePropery: string;
+    destinationProperty: string;
 }
 
-export interface LineInformation
-{
-    Text: string;
+export interface IProgramCount {
+    key: string;
+    value: string;
 }
 

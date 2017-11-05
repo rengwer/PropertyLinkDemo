@@ -1,23 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileService } from '../../services/file.service'
+import { IFileUploadResult, IFileSegment, IHeaderSegment, ILineSegment, IProgramCount } from '../../models/FileUploadResult'
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    public fileUploadResult: IFileUploadResult
     constructor(private fileService: FileService) { }
+
+    ngOnInit(): void {
+        
+    }
 
     fileChanged(event: Event) {
         let target: HTMLInputElement = event.target as HTMLInputElement;
-        let fileList: FileList|null = target.files;
+        let fileList: FileList | null = target.files;
         if (fileList != null && fileList.length > 0) {
             let file: File = fileList[0];
-
-            this.fileService.uploadFile(file).subscribe(result => alert(result.FileSegments.length), error => alert(error));
-
-            
+            this.fileService.uploadFile(file).subscribe(
+                result => this.fileUploadResult = result,
+                error => alert(error)
+            );
         }
     }
 }
