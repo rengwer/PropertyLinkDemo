@@ -1,0 +1,42 @@
+﻿.dataType {
+    color: purple;
+}
+
+.program {
+    color: blue;
+}
+
+.task {
+    color: green;
+}
+
+.tool {
+    color: brown;
+}
+
+.source {
+    color: darkred;
+    font-weight:bold;
+}
+
+.direction {
+    font-weight: bold;
+    color: black;
+}
+
+.destination {
+    color: darkred;
+    font-weight:bold;
+}
+
+.line{
+    padding-left:20px;
+}
+
+.header {
+    margin-top:25px;
+    background-color: rgba(221, 221, 221, 1);
+    border-radius:3px;
+}
+
+

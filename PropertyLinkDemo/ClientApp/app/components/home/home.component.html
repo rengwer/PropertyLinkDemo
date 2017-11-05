@@ -1,0 +1,44 @@
+<h1>Property Linking Demo</h1>
+<p>Upload a property linking file to begin viewing property information.</p>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Upload a file</div>
+    <div class="panel-body">
+        <input class="" type="file" name="fileUpload" accept=".txt"  (change)="fileChanged($event)"/>
+    </div>
+</div>
+
+
+<div class="panel panel-default" *ngIf="fileUploadResult">
+    <div class="panel-heading">Dependencies</div>
+    <div class="panel-body">
+        <div class="row" *ngFor="let programCount of fileUploadResult.programCounts"><label class="col-sm-2">{{programCount.key}}:</label>&nbsp;<span  class="col-sm-1">{{programCount.value}}</span></div> 
+    </div>
+</div>
+
+<div class="panel panel-default" *ngIf="fileUploadResult">
+    <div class="panel-heading">Property Linking</div>
+    <div class="panel-body">
+        <div *ngFor="let segment of fileUploadResult.fileSegments">
+            <span class="row col-lg-12 header">
+                <!-- [Data Instance] AT2285_Inspection.Inspect.Stitched Image - Data Instance     -->
+                [<span class="dataType">{{segment.headerSegment?.dataType}}</span>]&nbsp;
+                <span class="program">{{segment.headerSegment?.program}}</span>.
+                <span class="task">{{segment.headerSegment?.tool}}</span>.
+                <span class="tool">{{segment.headerSegment?.tool}}</span>
+            </span>
+
+            <span class="row col-sm-12 line" *ngFor="let line of segment.lineSegments">
+                <!-- value <--- [Data Instance] AT2285_Logic.Start Inspection.Stitched Image - Data Instance:value  -->
+                <span class="source">{{line.sourceProperty}}</span>
+                <span class="direction">{{line.propertyDirection}}</span>
+                [<span class="dataType">{{line.dataType}}</span>]&nbsp;
+                <span class="program">{{line.program}}</span>.
+                <span class="task">{{line.tool}}</span>.
+                <span class="tool">{{line.tool}}</span>:
+                <span class="destination">{{line.destinationProperty}}</span>
+
+            </span>
+        </div>
+    </div>
+</div>
