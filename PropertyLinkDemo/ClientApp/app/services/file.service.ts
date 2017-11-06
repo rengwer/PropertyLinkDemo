@@ -9,9 +9,6 @@ export class FileService {
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string) { }
 
     public uploadFile(file: File): Observable<IFileUploadResult> {
-        let formData: FormData = new FormData();
-        formData.append('file', file, file.name);
-
         let headers = new Headers();
         headers.set('Content-Type', 'multipart/form-data');
         headers.append('Accept', 'application/json');

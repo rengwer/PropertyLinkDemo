@@ -19,7 +19,6 @@
             properties = properties[1].Split(":");
             DestinationProperty = properties[1].Trim();
             ParseProgramInformation(properties[0]);
-
         }
     }
 }
